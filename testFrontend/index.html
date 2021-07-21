@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="zxx">
+
+<head>
+    <title></title>
+    <link href="assets/css/style.css" rel="stylesheet">
+</head>
+
+<body>
+    <header>
+        <h1></h1>
+    </header>
+
+    <div id="tradingview_cont1" class="tradingview_cont1">
+        <!-- TradingView Widget BEGIN -->
+        <div id="chart1_over" class="chart1_over"></div>
+        <!-- TradingView Widget BEGIN -->
+        <div class="tradingview-widget-container">
+            <div class="tradingview-widget-container__widget"></div>
+            <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-tickers.js"
+                async>
+                {
+                    "symbols": [{
+                        "proName": "FOREXCOM:SPXUSD",
+                        "title": "S&P 500"
+                    }, {
+                        "proName": "FOREXCOM:NSXUSD",
+                        "title": "Nasdaq 100"
+                    }, {
+                        "proName": "FX_IDC:EURUSD",
+                        "title": "EUR/USD"
+                    }, {
+                        "proName": "BITSTAMP:BTCUSD",
+                        "title": "BTC/USD"
+                    }, {
+                        "proName": "BITSTAMP:ETHUSD",
+                        "title": "ETH/USD"
+                    }, {
+                        "description": "Gold",
+                        "proName": "TVC:GOLD"
+                    }, {
+                        "description": "Apple",
+                        "proName": "NASDAQ:AAPL"
+                    }],
+                    "colorTheme": "dark",
+                    "isTransparent": true,
+                    "showSymbolLogo": false,
+                    "locale": "en"
+                }
+            </script>
+        </div>
+        <!-- TradingView Widget END -->
+    </div>
+
+    <div id="tradingview_cont2">
+        <!-- TradingView Widget BEGIN -->
+        <div class="tradingview-widget-container">
+            <div id="tradingview_7aa20"></div>
+            <script type="text/javascript" src="https://s3.tradingview.com/tv.js"></script>
+            <script type="text/javascript">
+                new TradingView.widget({
+                    "width": 1000,
+                    "height": 450,
+                    "symbol": "NASDAQ:AAPL",
+                    "interval": "D",
+                    "timezone": "Etc/UTC",
+                    "theme": "dark",
+                    "style": "1",
+                    "locale": "en",
+                    "toolbar_bg": "#171B25",
+                    "enable_publishing": false,
+                    "hide_side_toolbar": false,
+                    "allow_symbol_change": true,
+                    "details": true,
+                    "studies": [
+                        "MASimple@tv-basicstudies",
+
+                    ],
+                    "container_id": "tradingview_7aa20"
+                });
+            </script>
+        </div>
+        <!-- TradingView Widget END -->
+    </div>
+
+    <div class="call-put-cont">
+        <button class="call-btn">Call</button>
+        <br>
+        <button class="put-btn">Put</button>
+
+    </div>
+
+    <div class="popup">
+        <div class="stock-price">
+           
+            <div class="stock-title">
+                 <button class="close-btn">
+                <span>X</span>
+            </button>
+                <h1 class="company-name">
+                    APPLE Inc
+                </h1>
+                <h1 class="stock-symbol">
+                    Symbol: AAPL
+                </h1>
+            </div>
+            <div class="stock-price-info">
+                <h1 class="number">
+                </h1>
+                <h1 class="number-description">
+                    Current Price
+                </h1>
+            </div>
+        </div>
+    </div>
+
+    <div id="price"></div>
+
+    <script>
+        var iframe = document.getElementsByTagName('iframe');
+        var innerDoc = iframe[0].contentDocument || iframe[0].contentWindow.document;
+
+        var priceWrapper = innerDoc.getElementsByClassName("priceWrapper-3PT2D-PK");
+        console.log(priceWrapper);
+
+       
+
+       
+
+        function closePopup(popup) {
+            popup.classList.remove('open');
+        }
+
+        function openPopup(popup) {
+            popup.classList.add('open');
+            console.log(popup);
+        }
+        // Once the DOM contents are available
+        window.onload = () => {
+            const popup = document.querySelector('.popup');
+            const closebtn = document.querySelector('.close-btn');
+            document.addEventListener('click', function () {
+                closePopup(popup);
+            })
+
+           
+           
+        //  Closing the popup and making the apiCall
+            let callbutton = document.querySelector('.call-btn');
+            closebtn.addEventListener('click', function(){
+                closePopup(popup);
+            })
+            callbutton.addEventListener('click', async function () {
+                try {
+                    let res = await fetch('http://localhost:5000/stockprice');
+                    res.json().then((data) => {
+                        console.log(data.data);
+
+                        let priceData = data.data;
+                        let price = document.querySelector('.number');
+                        price.innerHTML = parseFloat(priceData).toFixed(2);
+                        openPopup(popup);
+                    })
+                } catch (error) {
+                   throw error;
+                }
+
+
+
+            })
+
+        }
+    </script>
+
+</body>
+
+</html>
