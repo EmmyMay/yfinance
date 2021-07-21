@@ -1,0 +1,158 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@100&display=swap');
+body {
+    margin: 0;
+    padding: 0;
+    /*background: linear-gradient(to bottom, #060F1A 0%, #0D1A2B 50%, #020A14 100%);*/
+    background: #171B25;
+    font-family: Montserrat;
+    color: #fff;
+}
+
+header {
+    padding: 20px;
+}
+
+#chart1_over {
+    background: #01050e00;
+    width: 1000px;
+    height: 72px;
+    z-index: 9999999;
+    position: absolute;
+    margin: auto;
+    left: 0;
+    right: 0;
+    top: 92px;
+}
+
+#tradingview_cont1 {
+    border: 2px;
+    border-color: #171B25;
+    margin: auto;
+    margin-top: -50px;
+    pointer-events: none;
+    width: 1000px;
+}
+
+#tradingview_cont2 {
+    margin-top: 20px;
+}
+
+.tradingview-widget-container {
+    margin-top: 20px;
+}
+
+.call-put-cont {
+    padding: 30px;
+    position: absolute;
+    bottom: 175px;
+    right: 0;
+}
+
+button {
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    font-size: 17px;
+}
+
+.call-btn {
+    background-color: #019841;
+    border: none;
+    border-color: #019841;
+    color: #fff;
+    padding: 30px;
+    width: 150px;
+}
+
+.put-btn {
+    background-color: #de2e4e;
+    border: none;
+    border-color: #de2e4e;
+    color: #fff;
+    padding: 30px;
+    width: 150px;
+    margin-top: 12px;
+}
+
+
+
+.popup .stock-price{
+    background-color: white;
+    border-radius: 5rem;
+    padding: 1rem 5rem;
+    padding-bottom: 6rem;
+    padding-top: 3rem;
+    position: absolute;
+    top: 10rem;
+    right: 50rem;
+    width: 18rem;
+    height: 20rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border: 3px solid rgb(22, 161, 211);
+ 
+}
+
+
+
+ .close-btn{
+       background-color: Transparent;
+       background-repeat:no-repeat;
+       border: none;
+       cursor:pointer;
+       overflow: hidden;
+       outline:none;
+       position: absolute;       
+       top: 5%;
+       left: 80%;
+       font-size: 2rem;
+       font-family: Montserrat;
+       font-weight: 900;
+       
+      
+      
+       
+}
+
+
+
+
+h1{
+    color: black;    
+}
+
+.stock-price .company-name{
+    font-weight: 900;
+    font-size: 3rem;
+}
+
+.stock-price .stock-symbol{
+    font-weight: 600;
+    font-size: 1.7rem;
+}
+
+.stock-price .number {
+    color: rgb(3, 177, 3);
+    font-weight: 500;
+    font-size: 3rem;
+      font-family: Impact,
+      Haettenschweiler,
+      'Arial Narrow Bold',
+      sans-serif;
+}
+
+.stock-price .number-description{
+    font-weight: 600;
+    font-size: 1.7rem;
+    margin-right: 3.5rem;
+}
+
+
+
+.popup {
+    display: none;
+}
+
+.popup.open {
+    display: flex;
+}
